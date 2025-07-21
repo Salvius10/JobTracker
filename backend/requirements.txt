@@ -1,0 +1,20 @@
+# Django & REST Framework
+Django>=4.2
+djangorestframework>=3.14.0
+
+# JWT Authentication
+djangorestframework-simplejwt>=5.2.2
+
+# Cross-Origin Resource Sharing (for React frontend)
+django-cors-headers>=4.3.0
+
+# MongoDB support (use only if you're using MongoDB)
+
+# or, for an alternative:
+# mongoengine>=0.27.0
+
+# PostgreSQL support (use this instead of MongoDB if preferred)
+# psycopg2-binary>=2.9.7
+
+# Optional: For environment variable handling
+python-decouple>=3.8
