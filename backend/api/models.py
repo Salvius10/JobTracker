@@ -9,6 +9,7 @@ class JobApplication(models.Model):
         ("Rejected","Rejected"),
         ("Offered","Offered")
     ]
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     company=models.CharField(max_length=150)
     stage=models.CharField(max_length=100,choices=STAGE_CHOICES)
     position=models.CharField(max_length=300)
