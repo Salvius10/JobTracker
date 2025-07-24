@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-//import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import axios from "axios"
 const LoginPage = () => {
     const [username,setUsername]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    //const navigate=useNavigate()
+    const navigate=useNavigate()
     const [error,setError]=useState("")
 
     const handleLogin=async (e)=>{
@@ -17,14 +17,14 @@ const LoginPage = () => {
             })
         localStorage.setItem("access",res.data.access)
         localStorage.setItem("refresh",res.data.refresh)
-        //navigate("/dashboard")
+        navigate("/dashboard")
         } catch (err) {
             setError("Invalid Email or Password")
         }
     }
   return (
     <div>
-        <form action="">
+        <form action="" onSubmit={handleLogin}>
             <div>
                 <label htmlFor="">Username:</label>
                 <input 
@@ -52,6 +52,7 @@ const LoginPage = () => {
                 onChange={(e)=>setPassword(e.target.value)}
                 placeholder='Enter your Password' />
             </div>
+            <button type='submit'>Login</button>
         </form>
     </div>
   )
