@@ -12,17 +12,20 @@ class RegisterView(generics.CreateAPIView):
 
 class JobApplicationListCreateView(generics.ListCreateAPIView):
     serializer_class=JobApplicationSerializer
-    permission_classes=[permissions.AllowAny]
+    permission_classes=[permissions.IsAuthenticated]
 
     def get_queryset(self):
         return JobApplication.objects.filter(user=self.request.user)
     
     def perform_create(self, serializer):
-        return serializer.save(user=self.request.user)
+        if not serializer.is_valid():
+            print("Validation errors:", serializer.errors)
+            raise ValueError("Invalid data received")
+        serializer.save(user=self.request.user)
     
 class JobApplicationDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=JobApplicationSerializer
-    permission_classes=[permissions.AllowAny]
+    permission_classes=[permissions.IsAuthenticated]
 
     def get_queryset(self):
         return JobApplication.objects.filter(user=self.request.user)

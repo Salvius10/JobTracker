@@ -16,27 +16,30 @@ export const fetchJobs=async ()=>{
     return res.data
 }
 
-export const addJobs=async (jobData)=>{
-    const res=await axios.post(`${BASE_URL}/jobs/`,jobData,{
-        ...getAuthHeader(),
-        headers:{
-            ...getAuthHeader().headers,
-            "Content-Type": "multipart/form-data"
-        }
-    })
-    return res.data
-}
+export const addJobs = async (jobData) => {
+  const authHeaders = getAuthHeader().headers;
 
-export const updateJobs=async (id,jobData)=>{
-    const res=await axios.put(`${BASE_URL}/jobs/${id}`,jobData,{
-        ...getAuthHeader(),
-        headers:{
-            ...getAuthHeader().headers,
-            "Content-Type": "multipart/form-data"
-        }
-    })
-    return res.data
-}
+  const res = await axios.post(`${BASE_URL}/jobs/`, jobData, {
+    headers: {
+      ...authHeaders,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const updateJobs = async (id, jobData) => {
+  const authHeaders = getAuthHeader().headers;
+
+  const res = await axios.put(`${BASE_URL}/jobs/${id}`, jobData, {
+    headers: {
+      ...authHeaders,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
 
 export const deleteJobs=async (id)=>{
     const res=await axios.delete(`${BASE_URL}/jobs/${id}`,getAuthHeader())

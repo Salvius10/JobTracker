@@ -17,7 +17,7 @@ class JobApplication(models.Model):
     response_date=models.DateField()
     job_url=models.URLField()
     referral=models.BooleanField(default=False)
-    resume=models.FileField(upload_to="resume/")
+    resume=models.FileField(upload_to="resume/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.company} - {self.position}"
