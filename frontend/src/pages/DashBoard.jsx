@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import {fetchJobs} from "../api/jobAPI"
+import AddJobForm from "../components/AddJobForm";
 const DashBoard = () => {
     const [jobs,setJobs]=useState([])
     const [loading,setLoading]=useState(true)
@@ -25,6 +26,7 @@ const DashBoard = () => {
       <h1>Job Applications</h1>
       {loading? <p>Loading ...</p>:(
       <div>
+         <AddJobForm onJobAdded={loadJobs} />
         <table>
             <thead>
                 <tr>
@@ -51,8 +53,8 @@ const DashBoard = () => {
                         <td>{job.referral}</td>
                         <td>{job.resume}</td>
                         <td>
-                            <button>Add</button>
-                            <button>Edit</button>
+                            <button onClick={() => setEditingJob(job)}>Edit</button>
+                            <button onClick={() => handleDelete(job.id)}>Delete</button>
                         </td>
                     </tr>
                 ))}
